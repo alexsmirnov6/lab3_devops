@@ -1,0 +1,14 @@
+{
+  "rows": 229388,
+  "distinct_vacancies": 229388,
+  "duplicate_rows": 0,
+  "min_published_at": "2023-12-19",
+  "max_published_at": "2024-09-14",
+  "devops_rows": 6215,
+  "devops_distinct_vacancies": 6215,
+  "devops_salary_rows": 1364,
+  "devops_with_skills": 4266,
+  "source_bytes": 847619384,
+  "elapsed_seconds": 0.471,
+  "variant_sql": "regexp_matches( lower(coalesce(name, '')), 'dev[[:space:]-]*(sec[[:space:]-]*)?ops|девопс|site reliability|(^|[^a-z])sre([^a-z]|$)|platform engineer' )"
+}

@@ -1,0 +1,12 @@
+{
+  "raw_s3_object": "s3://hh-lake/raw/it_vacancies_2024.csv",
+  "variant_s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "sql_condition": "dev[[:space:]-]*(sec[[:space:]-]*)?ops|девопс|site reliability|(^|[^a-z])sre([^a-z]|$)|platform engineer",
+  "duckdb_selected": 6215,
+  "prepared_selected": 6215,
+  "sql_only": 0,
+  "prepared_only": 0,
+  "exact_id_set_match": true,
+  "sql_ids_sha256": "054c2ede9b76850e3b995d2df9fdbbf2353baa9bd5ba60b08bd6268a0dae768e",
+  "prepared_ids_sha256": "054c2ede9b76850e3b995d2df9fdbbf2353baa9bd5ba60b08bd6268a0dae768e"
+}

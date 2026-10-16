@@ -1,0 +1,13 @@
+.venv/
+.uv-cache/
+__pycache__/
+*.pyc
+.env
+data/raw/
+data/hh.zip
+data/json_sample/
+rustfs-data/
+results/
+evidence/rendered/
+report/assets/
+

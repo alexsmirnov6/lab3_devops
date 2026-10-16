@@ -1,0 +1,34 @@
+{
+  "method": "mapreduce-optimized",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "object_bytes": 1880228,
+  "chunk_bytes": 524288,
+  "chunks": 4,
+  "workers": 4,
+  "worker_pids": [
+    34348,
+    44584,
+    44780,
+    48804
+  ],
+  "vacancies": 6215,
+  "retries": 1,
+  "elapsed_seconds": 1.566109,
+  "outputs": {
+    "skills": {
+      "path": "C:\\Users\\Alex\\Documents\\inj_dan\\hw3_devops\\results\\mapreduce_failure_test\\skills.json",
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "path": "C:\\Users\\Alex\\Documents\\inj_dan\\hw3_devops\\results\\mapreduce_failure_test\\pairs.json",
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "path": "C:\\Users\\Alex\\Documents\\inj_dan\\hw3_devops\\results\\mapreduce_failure_test\\triples.json",
+      "unique": 195366,
+      "total": 687102
+    }
+  }
+}

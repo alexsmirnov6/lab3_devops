@@ -1,0 +1,7 @@
+{
+  "csv_vacancy_ids": 229388,
+  "json_archive_ids": 10000,
+  "overlap_ids": 10000,
+  "json_only_ids": 0,
+  "conclusion": "Every vacancy from hh.zip is present in it_vacancies_2024.csv"
+}

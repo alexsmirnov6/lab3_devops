@@ -1,0 +1,60 @@
+{
+  "variant": 11,
+  "segment": "DevOps инженер",
+  "filter": "Название содержит DevOps, DevSecOps, SRE, Site Reliability или Platform Engineer",
+  "source_file": "it_vacancies_2024.csv",
+  "source_bytes": 847619384,
+  "source_sha256": "303db922b541e4440906f5a7e8be32fb55e8808f950ffddb8c272f1548212a65",
+  "source_rows": 229388,
+  "selected_rows": 6215,
+  "selected_with_skills": 4266,
+  "selected_with_salary_rur": 1364,
+  "published_at_min": "2023-12-19",
+  "published_at_max": "2024-09-14",
+  "variant_object": "devops_vacancies.ndjson",
+  "variant_bytes": 1880228,
+  "variant_sha256": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7",
+  "top_regions": [
+    [
+      "Москва",
+      3536
+    ],
+    [
+      "Санкт-Петербург",
+      841
+    ],
+    [
+      "Екатеринбург",
+      231
+    ],
+    [
+      "Новосибирск",
+      205
+    ],
+    [
+      "Казань",
+      147
+    ],
+    [
+      "Нижний Новгород",
+      142
+    ],
+    [
+      "Самара",
+      86
+    ],
+    [
+      "Ростов-на-Дону",
+      84
+    ],
+    [
+      "Томск",
+      58
+    ],
+    [
+      "Краснодар",
+      55
+    ]
+  ],
+  "elapsed_seconds": 4.465
+}

@@ -1,0 +1,231 @@
+{
+  "measurement": "wall clock plus maximum sum of RSS for the process tree, sampled every 10 ms",
+  "attempts_per_method": 3,
+  "workers_or_threads": 4,
+  "chunk_bytes": 524288,
+  "methods": {
+    "mapreduce_baseline": {
+      "attempts": 3,
+      "wall_seconds_median": 2.203035,
+      "peak_rss_mib_median": 418.371,
+      "runs": [
+        {
+          "wall_seconds": 2.277885,
+          "reported_compute_seconds": 1.752196,
+          "peak_rss_mib": 417.164,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 2.203035,
+          "reported_compute_seconds": 1.748243,
+          "peak_rss_mib": 418.371,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 2.196047,
+          "reported_compute_seconds": 1.720721,
+          "peak_rss_mib": 420.383,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\baseline\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        }
+      ]
+    },
+    "mapreduce_optimized": {
+      "attempts": 3,
+      "wall_seconds_median": 2.107276,
+      "peak_rss_mib_median": 365.414,
+      "runs": [
+        {
+          "wall_seconds": 2.107276,
+          "reported_compute_seconds": 1.619172,
+          "peak_rss_mib": 362.344,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 2.08906,
+          "reported_compute_seconds": 1.644762,
+          "peak_rss_mib": 372.598,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 2.128607,
+          "reported_compute_seconds": 1.658752,
+          "peak_rss_mib": 365.414,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\skills.json",
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\pairs.json",
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "path": "C:\\Users\\Alex\\AppData\\Local\\Temp\\hw3-profile-3m1fyta7\\optimized\\triples.json",
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        }
+      ]
+    },
+    "duckdb_sql": {
+      "attempts": 3,
+      "wall_seconds_median": 1.494552,
+      "peak_rss_mib_median": 394.566,
+      "runs": [
+        {
+          "wall_seconds": 1.497866,
+          "reported_compute_seconds": 1.157715,
+          "peak_rss_mib": 394.566,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.478493,
+          "reported_compute_seconds": 1.137023,
+          "peak_rss_mib": 394.297,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.494552,
+          "reported_compute_seconds": 1.159216,
+          "peak_rss_mib": 400.23,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        }
+      ]
+    }
+  },
+  "optimization_effect": {
+    "wall_speedup": 1.045,
+    "peak_memory_reduction_pct": 12.66
+  }
+}
