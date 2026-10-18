@@ -10,16 +10,13 @@ from pathlib import Path
 import duckdb
 
 from common import S3Config
+from duckdb_support import configure_s3, sql_string
 
 
 VARIANT_SQL_PATTERN = (
     "dev[[:space:]-]*(sec[[:space:]-]*)?ops|девопс|site reliability|"
     "(^|[^a-z])sre([^a-z]|$)|platform engineer"
 )
-
-
-def sql_string(value: str) -> str:
-    return "'" + value.replace("'", "''") + "'"
 
 
 def ids_hash(values: list[str]) -> str:
@@ -35,18 +32,11 @@ def main() -> None:
     args = parser.parse_args()
 
     config = S3Config.from_env()
-    endpoint = config.endpoint.removeprefix("http://").removeprefix("https://")
     raw_uri = f"s3://{config.bucket}/{args.raw_key}"
     variant_uri = f"s3://{config.bucket}/{args.variant_key}"
 
     con = duckdb.connect(database=":memory:")
-    con.execute("LOAD httpfs")
-    con.execute(f"SET s3_endpoint={sql_string(endpoint)}")
-    con.execute(f"SET s3_access_key_id={sql_string(config.access_key)}")
-    con.execute(f"SET s3_secret_access_key={sql_string(config.secret_key)}")
-    con.execute("SET s3_region='us-east-1'")
-    con.execute("SET s3_url_style='path'")
-    con.execute(f"SET s3_use_ssl={'true' if config.endpoint.startswith('https://') else 'false'}")
+    configure_s3(con, config)
 
     con.execute(
         f"""

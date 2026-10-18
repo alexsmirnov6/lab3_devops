@@ -39,7 +39,9 @@ def checksum(path: Path) -> str:
 def ensure_bucket(s3, bucket: str) -> None:
     try:
         s3.head_bucket(Bucket=bucket)
-    except ClientError:
+    except ClientError as error:
+        if error.response.get("Error", {}).get("Code") not in ("404", "NoSuchBucket"):
+            raise
         s3.create_bucket(Bucket=bucket)
 
 

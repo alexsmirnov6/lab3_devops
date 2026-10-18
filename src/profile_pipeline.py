@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import statistics
 import subprocess
 import sys
 import tempfile
@@ -13,7 +14,7 @@ from pathlib import Path
 import psutil
 
 
-def peak_tree_rss(process: subprocess.Popen) -> tuple[int, str, str]:
+def peak_tree_rss(process: subprocess.Popen) -> int:
     root = psutil.Process(process.pid)
     peak = 0
     while process.poll() is None:
@@ -29,21 +30,21 @@ def peak_tree_rss(process: subprocess.Popen) -> tuple[int, str, str]:
                 pass
         peak = max(peak, total)
         time.sleep(0.01)
-    stdout, stderr = process.communicate()
-    return peak, stdout, stderr
+    return peak
 
 
 def execute(command: list[str]) -> dict:
     started = time.perf_counter()
-    process = subprocess.Popen(
-        command,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        encoding="utf-8",
-    )
-    peak, stdout, stderr = peak_tree_rss(process)
-    elapsed = time.perf_counter() - started
+    # Files avoid blocking a child when its output exceeds the pipe buffer.
+    with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as stdout_file, tempfile.TemporaryFile(
+        mode="w+", encoding="utf-8"
+    ) as stderr_file:
+        process = subprocess.Popen(command, stdout=stdout_file, stderr=stderr_file)
+        peak = peak_tree_rss(process)
+        elapsed = time.perf_counter() - started
+        stdout_file.seek(0)
+        stderr_file.seek(0)
+        stdout, stderr = stdout_file.read(), stderr_file.read()
     if process.returncode != 0:
         raise RuntimeError(f"Command failed ({process.returncode}):\n{stderr}\n{stdout}")
     summary = json.loads(stdout)
@@ -51,16 +52,18 @@ def execute(command: list[str]) -> dict:
         "wall_seconds": round(elapsed, 6),
         "reported_compute_seconds": summary["elapsed_seconds"],
         "peak_rss_mib": round(peak / 1024 / 1024, 3),
-        "vacancies": summary["vacancies"],
-        "outputs": summary["outputs"],
+        **{key: summary[key] for key in (
+            "vacancies", "outputs", "chunks", "retries", "intermediate_items",
+            "intermediate_pickle_bytes",
+        ) if key in summary},
     }
 
 
 def aggregate(runs: list[dict]) -> dict:
     return {
         "attempts": len(runs),
-        "wall_seconds_median": round(sorted(item["wall_seconds"] for item in runs)[len(runs) // 2], 6),
-        "peak_rss_mib_median": round(sorted(item["peak_rss_mib"] for item in runs)[len(runs) // 2], 3),
+        "wall_seconds_median": round(statistics.median(item["wall_seconds"] for item in runs), 6),
+        "peak_rss_mib_median": round(statistics.median(item["peak_rss_mib"] for item in runs), 3),
         "runs": runs,
     }
 
@@ -72,6 +75,8 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--chunk-bytes", type=int, default=512 * 1024)
     args = parser.parse_args()
+    if min(args.attempts, args.workers, args.chunk_bytes) < 1:
+        parser.error("attempts, workers and chunk-bytes must be positive")
     source = Path(__file__).resolve().parent
     python = sys.executable
     measurements: dict[str, dict] = {}

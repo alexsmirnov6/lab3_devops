@@ -1,0 +1,1556 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.3"
+  },
+  "transport": "localhost HTTP HEAD/Range GET fixture; not RustFS",
+  "dataset": {
+    "path": "data/prepared/devops_vacancies.ndjson",
+    "bytes": 1880228,
+    "sha256": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7"
+  },
+  "attempts_per_case": 3,
+  "memory": "Maximum summed process-tree RSS, sampled every 10 ms; shared pages may be counted repeatedly",
+  "intermediate_size": "Sum of successful mapper payload pickle sizes; excludes IPC framing and failed attempts",
+  "cases": [
+    {
+      "workers": 1,
+      "chunk_bytes": 1048576,
+      "methods": {
+        "baseline": {
+          "attempts": 3,
+          "wall_seconds_median": 1.911496,
+          "peak_rss_mib_median": 278.316,
+          "runs": [
+            {
+              "wall_seconds": 1.885593,
+              "reported_compute_seconds": 1.301669,
+              "peak_rss_mib": 280.707,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.925529,
+              "reported_compute_seconds": 1.317651,
+              "peak_rss_mib": 277.52,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.911496,
+              "reported_compute_seconds": 1.312198,
+              "peak_rss_mib": 278.316,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "attempts": 3,
+          "wall_seconds_median": 1.795426,
+          "peak_rss_mib_median": 264.438,
+          "runs": [
+            {
+              "wall_seconds": 1.795426,
+              "reported_compute_seconds": 1.208089,
+              "peak_rss_mib": 267.727,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.818288,
+              "reported_compute_seconds": 1.209338,
+              "peak_rss_mib": 242.633,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.743324,
+              "reported_compute_seconds": 1.166888,
+              "peak_rss_mib": 264.438,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "workers": 2,
+      "chunk_bytes": 1048576,
+      "methods": {
+        "baseline": {
+          "attempts": 3,
+          "wall_seconds_median": 1.862391,
+          "peak_rss_mib_median": 293.406,
+          "runs": [
+            {
+              "wall_seconds": 1.914604,
+              "reported_compute_seconds": 1.302273,
+              "peak_rss_mib": 316.852,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.861291,
+              "reported_compute_seconds": 1.28842,
+              "peak_rss_mib": 293.406,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.862391,
+              "reported_compute_seconds": 1.274244,
+              "peak_rss_mib": 293.027,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "attempts": 3,
+          "wall_seconds_median": 1.752318,
+          "peak_rss_mib_median": 257.348,
+          "runs": [
+            {
+              "wall_seconds": 1.751051,
+              "reported_compute_seconds": 1.163025,
+              "peak_rss_mib": 250.324,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.753124,
+              "reported_compute_seconds": 1.158778,
+              "peak_rss_mib": 257.348,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.752318,
+              "reported_compute_seconds": 1.167309,
+              "peak_rss_mib": 261.633,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "workers": 4,
+      "chunk_bytes": 1048576,
+      "methods": {
+        "baseline": {
+          "attempts": 3,
+          "wall_seconds_median": 1.880704,
+          "peak_rss_mib_median": 306.871,
+          "runs": [
+            {
+              "wall_seconds": 1.880704,
+              "reported_compute_seconds": 1.28314,
+              "peak_rss_mib": 300.457,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.86014,
+              "reported_compute_seconds": 1.267832,
+              "peak_rss_mib": 306.871,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.888557,
+              "reported_compute_seconds": 1.299953,
+              "peak_rss_mib": 312.531,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14223448,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "attempts": 3,
+          "wall_seconds_median": 1.755184,
+          "peak_rss_mib_median": 241.211,
+          "runs": [
+            {
+              "wall_seconds": 1.729585,
+              "reported_compute_seconds": 1.15994,
+              "peak_rss_mib": 241.211,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.755184,
+              "reported_compute_seconds": 1.162146,
+              "peak_rss_mib": 249.051,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.774039,
+              "reported_compute_seconds": 1.17284,
+              "peak_rss_mib": 239.605,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 2,
+              "retries": 0,
+              "intermediate_items": 279091,
+              "intermediate_pickle_bytes": 5224646,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "workers": 4,
+      "chunk_bytes": 262144,
+      "methods": {
+        "baseline": {
+          "attempts": 3,
+          "wall_seconds_median": 1.900065,
+          "peak_rss_mib_median": 383.043,
+          "runs": [
+            {
+              "wall_seconds": 1.883481,
+              "reported_compute_seconds": 1.298631,
+              "peak_rss_mib": 388.906,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14057165,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.906953,
+              "reported_compute_seconds": 1.304895,
+              "peak_rss_mib": 383.043,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14057165,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.900065,
+              "reported_compute_seconds": 1.290026,
+              "peak_rss_mib": 381.914,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 895464,
+              "intermediate_pickle_bytes": 14057165,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "attempts": 3,
+          "wall_seconds_median": 1.835103,
+          "peak_rss_mib_median": 360.094,
+          "runs": [
+            {
+              "wall_seconds": 1.852097,
+              "reported_compute_seconds": 1.260499,
+              "peak_rss_mib": 360.105,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 395995,
+              "intermediate_pickle_bytes": 7166997,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.835103,
+              "reported_compute_seconds": 1.247722,
+              "peak_rss_mib": 355.578,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 395995,
+              "intermediate_pickle_bytes": 7166997,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            },
+            {
+              "wall_seconds": 1.834561,
+              "reported_compute_seconds": 1.239314,
+              "peak_rss_mib": 360.094,
+              "vacancies": 6215,
+              "outputs": {
+                "skills": {
+                  "unique": 1541,
+                  "total": 35158
+                },
+                "pairs": {
+                  "unique": 25462,
+                  "total": 173204
+                },
+                "triples": {
+                  "unique": 195366,
+                  "total": 687102
+                }
+              },
+              "chunks": 8,
+              "retries": 0,
+              "intermediate_items": 395995,
+              "intermediate_pickle_bytes": 7166997,
+              "verification": {
+                "all_equal": true,
+                "checks": [
+                  {
+                    "stack": "skills",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+                    "unique_combinations": 1541,
+                    "total_emissions": 35158
+                  },
+                  {
+                    "stack": "pairs",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+                    "unique_combinations": 25462,
+                    "total_emissions": 173204
+                  },
+                  {
+                    "stack": "triples",
+                    "equal": true,
+                    "different_fields": [],
+                    "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+                    "unique_combinations": 195366,
+                    "total_emissions": 687102
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "duckdb_local_file": {
+    "attempts": 3,
+    "wall_seconds_median": 1.057772,
+    "peak_rss_mib_median": 295.066,
+    "runs": [
+      {
+        "wall_seconds": 1.050389,
+        "reported_compute_seconds": 0.5392037000001437,
+        "peak_rss_mib": 295.066,
+        "vacancies": 6215,
+        "outputs": {
+          "skills": {
+            "unique": 1541
+          },
+          "pairs": {
+            "unique": 25462
+          },
+          "triples": {
+            "unique": 195366
+          }
+        }
+      },
+      {
+        "wall_seconds": 1.061744,
+        "reported_compute_seconds": 0.5460800999999265,
+        "peak_rss_mib": 299.988,
+        "vacancies": 6215,
+        "outputs": {
+          "skills": {
+            "unique": 1541
+          },
+          "pairs": {
+            "unique": 25462
+          },
+          "triples": {
+            "unique": 195366
+          }
+        }
+      },
+      {
+        "wall_seconds": 1.057772,
+        "reported_compute_seconds": 0.5371466999995391,
+        "peak_rss_mib": 264.379,
+        "vacancies": 6215,
+        "outputs": {
+          "skills": {
+            "unique": 1541
+          },
+          "pairs": {
+            "unique": 25462
+          },
+          "triples": {
+            "unique": 195366
+          }
+        }
+      }
+    ]
+  },
+  "mapper_failure": {
+    "wall_seconds": 1.840596,
+    "reported_compute_seconds": 1.255279,
+    "peak_rss_mib": 240.766,
+    "vacancies": 6215,
+    "outputs": {
+      "skills": {
+        "unique": 1541,
+        "total": 35158
+      },
+      "pairs": {
+        "unique": 25462,
+        "total": 173204
+      },
+      "triples": {
+        "unique": 195366,
+        "total": 687102
+      }
+    },
+    "chunks": 8,
+    "retries": 1,
+    "intermediate_items": 395995,
+    "intermediate_pickle_bytes": 7166997,
+    "verification": {
+      "all_equal": true,
+      "checks": [
+        {
+          "stack": "skills",
+          "equal": true,
+          "different_fields": [],
+          "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "unique_combinations": 1541,
+          "total_emissions": 35158
+        },
+        {
+          "stack": "pairs",
+          "equal": true,
+          "different_fields": [],
+          "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "unique_combinations": 25462,
+          "total_emissions": 173204
+        },
+        {
+          "stack": "triples",
+          "equal": true,
+          "different_fields": [],
+          "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+          "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+          "unique_combinations": 195366,
+          "total_emissions": 687102
+        }
+      ]
+    }
+  },
+  "matches_original_result_hashes": true
+}

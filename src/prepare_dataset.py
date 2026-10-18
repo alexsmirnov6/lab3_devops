@@ -10,7 +10,7 @@ import time
 from collections import Counter
 from pathlib import Path
 
-from common import is_devops_title, parse_bool, parse_skills, salary_midpoint_rur_gross
+from common import is_devops_title, optional_float, parse_bool, parse_skills, salary_midpoint_rur_gross
 
 
 def sha256(path: Path) -> str:
@@ -27,10 +27,14 @@ def main() -> None:
     parser.add_argument("--out-dir", type=Path, required=True)
     args = parser.parse_args()
 
-    args.out_dir.mkdir(parents=True, exist_ok=True)
-    output = args.out_dir / "devops_vacancies.ndjson"
-    labels_path = args.out_dir / "skill_labels.json"
-    metadata_path = args.out_dir / "dataset_metadata.json"
+    prepare(args.source, args.out_dir)
+
+
+def prepare(source_path: Path, out_dir: Path) -> dict:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    output = out_dir / "devops_vacancies.ndjson"
+    labels_path = out_dir / "skill_labels.json"
+    metadata_path = out_dir / "dataset_metadata.json"
 
     started = time.perf_counter()
     source_rows = 0
@@ -42,7 +46,7 @@ def main() -> None:
     min_date: str | None = None
     max_date: str | None = None
 
-    with args.source.open("r", encoding="utf-8-sig", newline="") as source, output.open(
+    with source_path.open("r", encoding="utf-8-sig", newline="") as source, output.open(
         "w", encoding="utf-8", newline="\n"
     ) as target:
         reader = csv.DictReader(source)
@@ -71,8 +75,8 @@ def main() -> None:
                 "name": row.get("name"),
                 "published_at": published_at or None,
                 "area": area,
-                "salary_from": float(row["salary_from"]) if row.get("salary_from") else None,
-                "salary_to": float(row["salary_to"]) if row.get("salary_to") else None,
+                "salary_from": optional_float(row.get("salary_from")),
+                "salary_to": optional_float(row.get("salary_to")),
                 "currency": row.get("currency") or None,
                 "gross": parse_bool(row.get("gross")),
                 "salary_mid_rur_gross": salary,
@@ -89,9 +93,9 @@ def main() -> None:
         "variant": 11,
         "segment": "DevOps инженер",
         "filter": "Название содержит DevOps, DevSecOps, SRE, Site Reliability или Platform Engineer",
-        "source_file": args.source.name,
-        "source_bytes": args.source.stat().st_size,
-        "source_sha256": sha256(args.source),
+        "source_file": source_path.name,
+        "source_bytes": source_path.stat().st_size,
+        "source_sha256": sha256(source_path),
         "source_rows": source_rows,
         "selected_rows": selected_rows,
         "selected_with_skills": with_skills,
@@ -106,6 +110,7 @@ def main() -> None:
     }
     metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(metadata, ensure_ascii=False, indent=2))
+    return metadata
 
 
 if __name__ == "__main__":

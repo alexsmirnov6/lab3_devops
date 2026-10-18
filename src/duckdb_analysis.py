@@ -7,26 +7,11 @@ import json
 import time
 from pathlib import Path
 
-import boto3
 import duckdb
-from botocore.client import Config
 
 from common import S3Config
-
-
-def s3_client(config: S3Config):
-    return boto3.client(
-        "s3",
-        endpoint_url=config.endpoint,
-        aws_access_key_id=config.access_key,
-        aws_secret_access_key=config.secret_key,
-        region_name="us-east-1",
-        config=Config(signature_version="s3v4", s3={"addressing_style": "path"}),
-    )
-
-
-def sql_string(value: str) -> str:
-    return "'" + value.replace("'", "''") + "'"
+from s3_io import client as s3_client
+from duckdb_support import configure_s3, sql_string
 
 
 def rows_as_dicts(cursor) -> list[dict]:
@@ -65,15 +50,7 @@ def run(args) -> dict:
     head_before = s3.head_object(Bucket=config.bucket, Key=args.key)
     started = time.perf_counter()
     con = duckdb.connect(database=":memory:")
-    con.execute("LOAD httpfs")
-    con.execute(f"PRAGMA threads={args.threads}")
-    endpoint = config.endpoint.removeprefix("http://").removeprefix("https://")
-    con.execute(f"SET s3_endpoint={sql_string(endpoint)}")
-    con.execute(f"SET s3_access_key_id={sql_string(config.access_key)}")
-    con.execute(f"SET s3_secret_access_key={sql_string(config.secret_key)}")
-    con.execute("SET s3_region='us-east-1'")
-    con.execute("SET s3_url_style='path'")
-    con.execute(f"SET s3_use_ssl={'true' if config.endpoint.startswith('https://') else 'false'}")
+    configure_s3(con, config, args.threads)
     s3_uri = f"s3://{config.bucket}/{args.key}"
     con.execute(
         f"CREATE TABLE vacancies AS SELECT * FROM read_ndjson_auto({sql_string(s3_uri)})"
