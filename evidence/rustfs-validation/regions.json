@@ -1,0 +1,621 @@
+{
+  "selected_by": "three regions with the most DevOps vacancies",
+  "summary": [
+    {
+      "region": "Москва",
+      "vacancies": 3536,
+      "salary_n": 699,
+      "median_salary_rur_gross": 287356.32,
+      "vacancies_with_skills": 2355,
+      "avg_skills_per_vacancy": 5.25
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 841,
+      "salary_n": 217,
+      "median_salary_rur_gross": 229885.06,
+      "vacancies_with_skills": 593,
+      "avg_skills_per_vacancy": 5.96
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 231,
+      "salary_n": 43,
+      "median_salary_rur_gross": 183908.05,
+      "vacancies_with_skills": 164,
+      "avg_skills_per_vacancy": 6.14
+    }
+  ],
+  "share_pct_denominator": "vacancies_with_skills",
+  "top_skills": [
+    {
+      "region": "Екатеринбург",
+      "skill": "linux",
+      "vacancies": 111,
+      "rank": 1,
+      "share_pct": 67.68,
+      "share_all_vacancies_pct": 48.05
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "kubernetes",
+      "vacancies": 94,
+      "rank": 2,
+      "share_pct": 57.32,
+      "share_all_vacancies_pct": 40.69
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "docker",
+      "vacancies": 90,
+      "rank": 3,
+      "share_pct": 54.88,
+      "share_all_vacancies_pct": 38.96
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "devops",
+      "vacancies": 61,
+      "rank": 4,
+      "share_pct": 37.2,
+      "share_all_vacancies_pct": 26.41
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "ansible",
+      "vacancies": 60,
+      "rank": 5,
+      "share_pct": 36.59,
+      "share_all_vacancies_pct": 25.97
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "ci/cd",
+      "vacancies": 54,
+      "rank": 6,
+      "share_pct": 32.93,
+      "share_all_vacancies_pct": 23.38
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "bash",
+      "vacancies": 48,
+      "rank": 7,
+      "share_pct": 29.27,
+      "share_all_vacancies_pct": 20.78
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "python",
+      "vacancies": 46,
+      "rank": 8,
+      "share_pct": 28.05,
+      "share_all_vacancies_pct": 19.91
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "postgresql",
+      "vacancies": 40,
+      "rank": 9,
+      "share_pct": 24.39,
+      "share_all_vacancies_pct": 17.32
+    },
+    {
+      "region": "Екатеринбург",
+      "skill": "grafana",
+      "vacancies": 37,
+      "rank": 10,
+      "share_pct": 22.56,
+      "share_all_vacancies_pct": 16.02
+    },
+    {
+      "region": "Москва",
+      "skill": "linux",
+      "vacancies": 1450,
+      "rank": 1,
+      "share_pct": 61.57,
+      "share_all_vacancies_pct": 41.01
+    },
+    {
+      "region": "Москва",
+      "skill": "kubernetes",
+      "vacancies": 1310,
+      "rank": 2,
+      "share_pct": 55.63,
+      "share_all_vacancies_pct": 37.05
+    },
+    {
+      "region": "Москва",
+      "skill": "docker",
+      "vacancies": 1237,
+      "rank": 3,
+      "share_pct": 52.53,
+      "share_all_vacancies_pct": 34.98
+    },
+    {
+      "region": "Москва",
+      "skill": "devops",
+      "vacancies": 875,
+      "rank": 4,
+      "share_pct": 37.15,
+      "share_all_vacancies_pct": 24.75
+    },
+    {
+      "region": "Москва",
+      "skill": "ansible",
+      "vacancies": 813,
+      "rank": 5,
+      "share_pct": 34.52,
+      "share_all_vacancies_pct": 22.99
+    },
+    {
+      "region": "Москва",
+      "skill": "ci/cd",
+      "vacancies": 673,
+      "rank": 6,
+      "share_pct": 28.58,
+      "share_all_vacancies_pct": 19.03
+    },
+    {
+      "region": "Москва",
+      "skill": "postgresql",
+      "vacancies": 654,
+      "rank": 7,
+      "share_pct": 27.77,
+      "share_all_vacancies_pct": 18.5
+    },
+    {
+      "region": "Москва",
+      "skill": "python",
+      "vacancies": 643,
+      "rank": 8,
+      "share_pct": 27.3,
+      "share_all_vacancies_pct": 18.18
+    },
+    {
+      "region": "Москва",
+      "skill": "bash",
+      "vacancies": 577,
+      "rank": 9,
+      "share_pct": 24.5,
+      "share_all_vacancies_pct": 16.32
+    },
+    {
+      "region": "Москва",
+      "skill": "grafana",
+      "vacancies": 505,
+      "rank": 10,
+      "share_pct": 21.44,
+      "share_all_vacancies_pct": 14.28
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "linux",
+      "vacancies": 387,
+      "rank": 1,
+      "share_pct": 65.26,
+      "share_all_vacancies_pct": 46.02
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "docker",
+      "vacancies": 337,
+      "rank": 2,
+      "share_pct": 56.83,
+      "share_all_vacancies_pct": 40.07
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "kubernetes",
+      "vacancies": 280,
+      "rank": 3,
+      "share_pct": 47.22,
+      "share_all_vacancies_pct": 33.29
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "ansible",
+      "vacancies": 245,
+      "rank": 4,
+      "share_pct": 41.32,
+      "share_all_vacancies_pct": 29.13
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "devops",
+      "vacancies": 195,
+      "rank": 5,
+      "share_pct": 32.88,
+      "share_all_vacancies_pct": 23.19
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "ci/cd",
+      "vacancies": 194,
+      "rank": 6,
+      "share_pct": 32.72,
+      "share_all_vacancies_pct": 23.07
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "bash",
+      "vacancies": 188,
+      "rank": 7,
+      "share_pct": 31.7,
+      "share_all_vacancies_pct": 22.35
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "python",
+      "vacancies": 182,
+      "rank": 8,
+      "share_pct": 30.69,
+      "share_all_vacancies_pct": 21.64
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "postgresql",
+      "vacancies": 159,
+      "rank": 9,
+      "share_pct": 26.81,
+      "share_all_vacancies_pct": 18.91
+    },
+    {
+      "region": "Санкт-Петербург",
+      "skill": "grafana",
+      "vacancies": 146,
+      "rank": 10,
+      "share_pct": 24.62,
+      "share_all_vacancies_pct": 17.36
+    }
+  ],
+  "top_pairs": [
+    {
+      "region": "Екатеринбург",
+      "vacancies": 71,
+      "rank": 1,
+      "share_pct": 43.29,
+      "share_all_vacancies_pct": 30.74,
+      "skills": [
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 71,
+      "rank": 2,
+      "share_pct": 43.29,
+      "share_all_vacancies_pct": 30.74,
+      "skills": [
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 66,
+      "rank": 3,
+      "share_pct": 40.24,
+      "share_all_vacancies_pct": 28.57,
+      "skills": [
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 49,
+      "rank": 4,
+      "share_pct": 29.88,
+      "share_all_vacancies_pct": 21.21,
+      "skills": [
+        "ansible",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 48,
+      "rank": 5,
+      "share_pct": 29.27,
+      "share_all_vacancies_pct": 20.78,
+      "skills": [
+        "ansible",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 860,
+      "rank": 1,
+      "share_pct": 36.52,
+      "share_all_vacancies_pct": 24.32,
+      "skills": [
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 816,
+      "rank": 2,
+      "share_pct": 34.65,
+      "share_all_vacancies_pct": 23.08,
+      "skills": [
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 810,
+      "rank": 3,
+      "share_pct": 34.39,
+      "share_all_vacancies_pct": 22.91,
+      "skills": [
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 571,
+      "rank": 4,
+      "share_pct": 24.25,
+      "share_all_vacancies_pct": 16.15,
+      "skills": [
+        "devops",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 561,
+      "rank": 5,
+      "share_pct": 23.82,
+      "share_all_vacancies_pct": 15.87,
+      "skills": [
+        "ansible",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 223,
+      "rank": 1,
+      "share_pct": 37.61,
+      "share_all_vacancies_pct": 26.52,
+      "skills": [
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 199,
+      "rank": 2,
+      "share_pct": 33.56,
+      "share_all_vacancies_pct": 23.66,
+      "skills": [
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 175,
+      "rank": 3,
+      "share_pct": 29.51,
+      "share_all_vacancies_pct": 20.81,
+      "skills": [
+        "ansible",
+        "docker"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 174,
+      "rank": 4,
+      "share_pct": 29.34,
+      "share_all_vacancies_pct": 20.69,
+      "skills": [
+        "ansible",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 173,
+      "rank": 5,
+      "share_pct": 29.17,
+      "share_all_vacancies_pct": 20.57,
+      "skills": [
+        "kubernetes",
+        "linux"
+      ]
+    }
+  ],
+  "top_triples": [
+    {
+      "region": "Екатеринбург",
+      "vacancies": 53,
+      "rank": 1,
+      "share_pct": 32.32,
+      "share_all_vacancies_pct": 22.94,
+      "skills": [
+        "docker",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 41,
+      "rank": 2,
+      "share_pct": 25.0,
+      "share_all_vacancies_pct": 17.75,
+      "skills": [
+        "ansible",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 39,
+      "rank": 3,
+      "share_pct": 23.78,
+      "share_all_vacancies_pct": 16.88,
+      "skills": [
+        "ansible",
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 37,
+      "rank": 4,
+      "share_pct": 22.56,
+      "share_all_vacancies_pct": 16.02,
+      "skills": [
+        "ansible",
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Екатеринбург",
+      "vacancies": 37,
+      "rank": 5,
+      "share_pct": 22.56,
+      "share_all_vacancies_pct": 16.02,
+      "skills": [
+        "devops",
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 558,
+      "rank": 1,
+      "share_pct": 23.69,
+      "share_all_vacancies_pct": 15.78,
+      "skills": [
+        "docker",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 382,
+      "rank": 2,
+      "share_pct": 16.22,
+      "share_all_vacancies_pct": 10.8,
+      "skills": [
+        "devops",
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 373,
+      "rank": 3,
+      "share_pct": 15.84,
+      "share_all_vacancies_pct": 10.55,
+      "skills": [
+        "devops",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 366,
+      "rank": 4,
+      "share_pct": 15.54,
+      "share_all_vacancies_pct": 10.35,
+      "skills": [
+        "ansible",
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Москва",
+      "vacancies": 355,
+      "rank": 5,
+      "share_pct": 15.07,
+      "share_all_vacancies_pct": 10.04,
+      "skills": [
+        "ansible",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 128,
+      "rank": 1,
+      "share_pct": 21.59,
+      "share_all_vacancies_pct": 15.22,
+      "skills": [
+        "docker",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 119,
+      "rank": 2,
+      "share_pct": 20.07,
+      "share_all_vacancies_pct": 14.15,
+      "skills": [
+        "ansible",
+        "docker",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 100,
+      "rank": 3,
+      "share_pct": 16.86,
+      "share_all_vacancies_pct": 11.89,
+      "skills": [
+        "ansible",
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 95,
+      "rank": 4,
+      "share_pct": 16.02,
+      "share_all_vacancies_pct": 11.3,
+      "skills": [
+        "ansible",
+        "kubernetes",
+        "linux"
+      ]
+    },
+    {
+      "region": "Санкт-Петербург",
+      "vacancies": 83,
+      "rank": 5,
+      "share_pct": 14.0,
+      "share_all_vacancies_pct": 9.87,
+      "skills": [
+        "ci/cd",
+        "docker",
+        "linux"
+      ]
+    }
+  ]
+}

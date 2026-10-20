@@ -1,0 +1,17 @@
+[
+  {
+    "key": "results/mapreduce/pairs.json",
+    "bytes": 2881790,
+    "etag": "07cb116443e0423cc9374481475503cb"
+  },
+  {
+    "key": "results/mapreduce/skills.json",
+    "bytes": 141664,
+    "etag": "445bdcda8bfbe166ebd3b0dd43bed964"
+  },
+  {
+    "key": "results/mapreduce/triples.json",
+    "bytes": 26156464,
+    "etag": "45545adc2414ae7b42c5d40728208953-2"
+  }
+]

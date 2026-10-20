@@ -1,0 +1,346 @@
+{
+  "recorded_at_utc": "2026-10-18T08:55:19.723258+00:00",
+  "input": {
+    "endpoint": "http://127.0.0.1:9000",
+    "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+    "bytes": 1880228,
+    "etag": "\"a92c544124a1697ca150a05a02c5d18e\"",
+    "sha256_metadata": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7"
+  },
+  "source_sha256": {
+    "common.py": "55aa7452c4784daa7ca461e17a0ea0e55fc8e38e42b92d99d2978acc1e52f054",
+    "duckdb_analysis.py": "c2119dac6f9bfeb848de3817d28c1b63cc974f2efb470664512a4a14c5a10bd5",
+    "duckdb_counts_s3.py": "713eca2217c96ca8be618fa60f1599120e6cc3ed5ea51ffd4e3426839ad142b2",
+    "duckdb_support.py": "b88162ff80be00f74a14d277aa3d4461b58114c3b159f095f881b423b05b6613",
+    "duckdb_variant_check.py": "c3c2410e72331233a47348a716e534ae9202a1b847138928221a6880a0a88245",
+    "inspect_json_archive.py": "60450566af9cfa171e1748963f949abf975753880f141d77bf18bb9ad987fe5d",
+    "inspect_source.py": "3a1ede16aa86998ff63699d2fba91e6cacca1298e898ad6cd2f07656e8e9c3de",
+    "mapreduce_s3.py": "8709b37ad805e8a28e075560bff578f67c35d8eb07161a6228ecd4f920e91ed6",
+    "prepare_dataset.py": "c9dd2153293d0cc09a5b471c0ab947f0f7942757f345ca905c9f8551f7d21a95",
+    "profile_pipeline.py": "92a7afe65b61c4d416a69ca0c50b32359b5afd851730df120fe564694d584fcb",
+    "s3_io.py": "4c5f596f770c76422d38e8f334fc396cab20c740bf4e8f118d12542cfbbee5ae",
+    "sample_json_archive.py": "a1cd9983d590d293d0b9d35dc9d11dce7859cf8b7efdb748683160a8efb0c9ba",
+    "verify_results.py": "abebc03bb4c3b323bae2c3a7be74331d33679c42c10929afdaac83e643aa1c8f"
+  },
+  "verification": {
+    "all_equal": true,
+    "runs": [
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      }
+    ]
+  },
+  "measurement": "wall clock plus maximum sum of RSS for the process tree, sampled every 10 ms",
+  "attempts_per_method": 3,
+  "workers_or_threads": 4,
+  "chunk_bytes": 524288,
+  "methods": {
+    "mapreduce_baseline": {
+      "attempts": 3,
+      "wall_seconds_median": 2.097697,
+      "peak_rss_mib_median": 411.242,
+      "runs": [
+        {
+          "wall_seconds": 2.221356,
+          "reported_compute_seconds": 1.498301,
+          "peak_rss_mib": 410.711,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        },
+        {
+          "wall_seconds": 2.030334,
+          "reported_compute_seconds": 1.428148,
+          "peak_rss_mib": 411.242,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        },
+        {
+          "wall_seconds": 2.097697,
+          "reported_compute_seconds": 1.45135,
+          "peak_rss_mib": 420.441,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        }
+      ]
+    },
+    "mapreduce_optimized": {
+      "attempts": 3,
+      "wall_seconds_median": 2.046541,
+      "peak_rss_mib_median": 366.305,
+      "runs": [
+        {
+          "wall_seconds": 2.046541,
+          "reported_compute_seconds": 1.413015,
+          "peak_rss_mib": 373.055,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        },
+        {
+          "wall_seconds": 2.074288,
+          "reported_compute_seconds": 1.43847,
+          "peak_rss_mib": 363.703,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        },
+        {
+          "wall_seconds": 1.988437,
+          "reported_compute_seconds": 1.335372,
+          "peak_rss_mib": 366.305,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        }
+      ]
+    },
+    "duckdb_sql": {
+      "attempts": 3,
+      "wall_seconds_median": 1.046671,
+      "peak_rss_mib_median": 323.949,
+      "runs": [
+        {
+          "wall_seconds": 1.046671,
+          "reported_compute_seconds": 0.637481,
+          "peak_rss_mib": 331.039,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.046413,
+          "reported_compute_seconds": 0.639891,
+          "peak_rss_mib": 323.949,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.060754,
+          "reported_compute_seconds": 0.650299,
+          "peak_rss_mib": 322.77,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        }
+      ]
+    }
+  },
+  "optimization_effect": {
+    "wall_speedup": 1.025,
+    "peak_memory_reduction_pct": 10.93
+  }
+}

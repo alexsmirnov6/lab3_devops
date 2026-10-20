@@ -1,0 +1,48 @@
+{
+  "bucket": "hh-lake",
+  "prefix": "results/mapreduce",
+  "all_verified": true,
+  "objects": [
+    {
+      "key": "results/mapreduce/skills.json",
+      "bytes": 141664,
+      "etag": "445bdcda8bfbe166ebd3b0dd43bed964",
+      "sha256_metadata": "c18b9a9352795ce42d3aa7d5ef845af43083daa0f020e51e43e4ccda6730e7d0",
+      "sha256_downloaded": "c18b9a9352795ce42d3aa7d5ef845af43083daa0f020e51e43e4ccda6730e7d0",
+      "verified": true
+    },
+    {
+      "key": "results/mapreduce/pairs.json",
+      "bytes": 2881790,
+      "etag": "07cb116443e0423cc9374481475503cb",
+      "sha256_metadata": "ba6dcc751253937d2322bfc7d2985c387f113149c7bed7e73b7030fea69e512e",
+      "sha256_downloaded": "ba6dcc751253937d2322bfc7d2985c387f113149c7bed7e73b7030fea69e512e",
+      "verified": true
+    },
+    {
+      "key": "results/mapreduce/triples.json",
+      "bytes": 26156464,
+      "etag": "45545adc2414ae7b42c5d40728208953-2",
+      "sha256_metadata": "0fb6cddf70e5c20ecc0f6ea8220de0cd31867dfb9a0eea1873f41afc173b0edb",
+      "sha256_downloaded": "0fb6cddf70e5c20ecc0f6ea8220de0cd31867dfb9a0eea1873f41afc173b0edb",
+      "verified": true
+    }
+  ],
+  "list_objects_v2": [
+    {
+      "key": "results/mapreduce/pairs.json",
+      "bytes": 2881790,
+      "etag": "07cb116443e0423cc9374481475503cb"
+    },
+    {
+      "key": "results/mapreduce/skills.json",
+      "bytes": 141664,
+      "etag": "445bdcda8bfbe166ebd3b0dd43bed964"
+    },
+    {
+      "key": "results/mapreduce/triples.json",
+      "bytes": 26156464,
+      "etag": "45545adc2414ae7b42c5d40728208953-2"
+    }
+  ]
+}

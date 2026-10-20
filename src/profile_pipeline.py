@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+from datetime import datetime, timezone
 import json
 import statistics
 import subprocess
@@ -12,6 +14,10 @@ import time
 from pathlib import Path
 
 import psutil
+
+from common import S3Config
+from s3_io import client
+from verify_results import canonical_digest
 
 
 def peak_tree_rss(process: subprocess.Popen) -> int:
@@ -70,6 +76,7 @@ def aggregate(runs: list[dict]) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--key", default="variants/devops/vacancies.ndjson")
     parser.add_argument("--attempts", type=int, default=3)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=4)
@@ -80,31 +87,60 @@ def main() -> None:
     source = Path(__file__).resolve().parent
     python = sys.executable
     measurements: dict[str, dict] = {}
+    config = S3Config.from_env()
+    s3 = client(config)
+    head_before = s3.head_object(Bucket=config.bucket, Key=args.key)
+    expected = None
+    checks = []
     with tempfile.TemporaryDirectory(prefix="hw3-profile-") as directory:
         root = Path(directory)
         commands = {
             "mapreduce_baseline": [
                 python, "-X", "utf8", str(source / "mapreduce_s3.py"),
-                "--out-dir", str(root / "baseline"), "--mode", "baseline",
+                "--key", args.key, "--out-dir", str(root / "baseline"), "--mode", "baseline",
                 "--workers", str(args.workers), "--chunk-bytes", str(args.chunk_bytes),
             ],
             "mapreduce_optimized": [
                 python, "-X", "utf8", str(source / "mapreduce_s3.py"),
-                "--out-dir", str(root / "optimized"), "--mode", "optimized",
+                "--key", args.key, "--out-dir", str(root / "optimized"), "--mode", "optimized",
                 "--workers", str(args.workers), "--chunk-bytes", str(args.chunk_bytes),
             ],
             "duckdb_sql": [
                 python, "-X", "utf8", str(source / "duckdb_counts_s3.py"),
-                "--out-dir", str(root / "duckdb"), "--threads", str(args.workers),
+                "--key", args.key, "--out-dir", str(root / "duckdb"), "--threads", str(args.workers),
             ],
         }
         for method, command in commands.items():
-            runs = [execute(command) for _ in range(args.attempts)]
+            runs = []
+            out_dir = root / {"mapreduce_baseline": "baseline", "mapreduce_optimized": "optimized",
+                              "duckdb_sql": "duckdb"}[method]
+            for attempt in range(args.attempts):
+                measured = execute(command)
+                digests = {name: canonical_digest(out_dir / f"{name}.json")[0]
+                           for name in ("skills", "pairs", "triples")}
+                if expected is None:
+                    expected = digests
+                if digests != expected:
+                    raise RuntimeError(f"Result mismatch for {method}, attempt {attempt + 1}")
+                checks.append({"method": method, "attempt": attempt + 1, "sha256": digests})
+                for output in measured["outputs"].values():
+                    output.pop("path", None)
+                runs.append(measured)
             measurements[method] = aggregate(runs)
 
+    head_after = s3.head_object(Bucket=config.bucket, Key=args.key)
+    if (head_before["ETag"], head_before["ContentLength"]) != (head_after["ETag"], head_after["ContentLength"]):
+        raise RuntimeError("Input S3 object changed while profiling")
     before = measurements["mapreduce_baseline"]
     after = measurements["mapreduce_optimized"]
     result = {
+        "recorded_at_utc": datetime.now(timezone.utc).isoformat(),
+        "input": {"endpoint": config.endpoint, "s3_object": f"s3://{config.bucket}/{args.key}",
+                  "bytes": head_before["ContentLength"], "etag": head_before["ETag"],
+                  "sha256_metadata": head_before.get("Metadata", {}).get("sha256")},
+        "source_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+                          for path in sorted(source.glob("*.py"))},
+        "verification": {"all_equal": True, "runs": checks},
         "measurement": "wall clock plus maximum sum of RSS for the process tree, sampled every 10 ms",
         "attempts_per_method": args.attempts,
         "workers_or_threads": args.workers,

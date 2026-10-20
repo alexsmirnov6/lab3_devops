@@ -44,6 +44,54 @@ def count_document(con, table: str, columns: list[str], stack_size: int, vacanci
     }
 
 
+def regional_reports(con, regions: list[str]) -> dict:
+    """Rank combinations per region; show both denominators explicitly."""
+    if not regions:
+        return {"summary": [], "top_skills": [], "top_pairs": [], "top_triples": []}
+    placeholders = ",".join("?" for _ in regions)
+    summary = rows_as_dicts(con.execute(f"""
+        SELECT area AS region, count(*) AS vacancies,
+               count(salary_mid_rur_gross) AS salary_n,
+               round(median(salary_mid_rur_gross), 2) AS median_salary_rur_gross,
+               count(*) FILTER (WHERE len(skills)>0) AS vacancies_with_skills,
+               round(avg(len(skills)), 2) AS avg_skills_per_vacancy
+        FROM vacancies WHERE area IN ({placeholders})
+        GROUP BY area ORDER BY vacancies DESC, area
+    """, regions))
+    result = {"summary": summary, "share_pct_denominator": "vacancies_with_skills"}
+    for width, table, name, limit in (
+        (1, "skill_rows", "top_skills", 10),
+        (2, "pair_rows", "top_pairs", 5),
+        (3, "triple_rows", "top_triples", 5),
+    ):
+        columns = ["skill"] if width == 1 else [f"skill{i}" for i in range(1, width + 1)]
+        keys = ", ".join(columns)
+        rows = rows_as_dicts(con.execute(f"""
+            WITH totals AS (
+                SELECT area, count(*) AS all_n,
+                       count(*) FILTER (WHERE len(skills)>0) AS skills_n
+                FROM vacancies GROUP BY area
+            ), counts AS (
+                SELECT area AS region, {keys}, count(*) AS vacancies
+                FROM {table} WHERE area IN ({placeholders})
+                GROUP BY area, {keys}
+            ), ranked AS (
+                SELECT *, row_number() OVER (
+                    PARTITION BY region ORDER BY vacancies DESC, {keys}
+                ) AS rank FROM counts
+            )
+            SELECT r.*, round(100.0*r.vacancies/t.skills_n, 2) AS share_pct,
+                   round(100.0*r.vacancies/t.all_n, 2) AS share_all_vacancies_pct
+            FROM ranked r JOIN totals t ON t.area=r.region
+            WHERE rank <= {limit} ORDER BY region, rank
+        """, regions))
+        if width > 1:
+            for row in rows:
+                row["skills"] = [row.pop(column) for column in columns]
+        result[name] = rows
+    return result
+
+
 def run(args) -> dict:
     config = S3Config.from_env()
     s3 = s3_client(config)
@@ -172,41 +220,7 @@ def run(args) -> dict:
         regions = [row[0] for row in con.execute(
             "SELECT area FROM vacancies GROUP BY area ORDER BY count(*) DESC, area LIMIT 3"
         ).fetchall()]
-        placeholders = ",".join("?" for _ in regions)
-        region_summary = rows_as_dicts(
-            con.execute(
-                f"""
-                SELECT area AS region, count(*) AS vacancies,
-                       count(salary_mid_rur_gross) AS salary_n,
-                       round(median(salary_mid_rur_gross), 2) AS median_salary_rur_gross,
-                       count(*) FILTER (WHERE len(skills)>0) AS vacancies_with_skills,
-                       round(avg(len(skills)), 2) AS avg_skills_per_vacancy
-                FROM vacancies WHERE area IN ({placeholders})
-                GROUP BY area ORDER BY vacancies DESC
-                """,
-                regions,
-            )
-        )
-        region_skills = rows_as_dicts(
-            con.execute(
-                f"""
-                WITH ranked AS (
-                    SELECT area AS region, skill, count(*) AS vacancies,
-                           round(100.0*count(*)/max(region_total), 2) AS share_pct,
-                           row_number() OVER (PARTITION BY area ORDER BY count(*) DESC, skill) AS rank
-                    FROM (
-                        SELECT s.*, count(DISTINCT v.vacancy_id) OVER (PARTITION BY s.area) AS region_total
-                        FROM skill_rows s JOIN vacancies v USING (vacancy_id)
-                        WHERE s.area IN ({placeholders})
-                    ) x
-                    GROUP BY area, skill
-                )
-                SELECT region, rank, skill, vacancies, share_pct FROM ranked
-                WHERE rank <= 10 ORDER BY region, rank
-                """,
-                regions,
-            )
-        )
+        region_result = regional_reports(con, regions)
     finally:
         con.close()
 
@@ -234,7 +248,7 @@ def run(args) -> dict:
     write_json(args.out_dir / "salary_effects.json", salary_result)
     write_json(
         args.out_dir / "regions.json",
-        {"selected_by": "three regions with the most DevOps vacancies", "summary": region_summary, "top_skills": region_skills},
+        {"selected_by": "three regions with the most DevOps vacancies", **region_result},
     )
     summary = {
         "method": "duckdb-sql",

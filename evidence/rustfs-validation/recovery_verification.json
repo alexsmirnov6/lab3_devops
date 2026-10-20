@@ -1,0 +1,32 @@
+{
+  "all_equal": true,
+  "checks": [
+    {
+      "stack": "skills",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "unique_combinations": 1541,
+      "total_emissions": 35158
+    },
+    {
+      "stack": "pairs",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "unique_combinations": 25462,
+      "total_emissions": 173204
+    },
+    {
+      "stack": "triples",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "unique_combinations": 195366,
+      "total_emissions": 687102
+    }
+  ]
+}

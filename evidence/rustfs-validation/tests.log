@@ -1,0 +1,21 @@
+test_combiner_and_tuple_keys (test_mapreduce.ChunkTests.test_combiner_and_tuple_keys) ... ok
+test_empty_object (test_mapreduce.ChunkTests.test_empty_object) ... ok
+test_every_boundary_with_and_without_final_newline (test_mapreduce.ChunkTests.test_every_boundary_with_and_without_final_newline) ... ok
+test_long_lines_cross_multiple_chunks (test_mapreduce.ChunkTests.test_long_lines_cross_multiple_chunks) ... ok
+test_retry_policy (test_mapreduce.ChunkTests.test_retry_policy) ... ok
+test_invalid_json_fails_without_retry (test_mapreduce.PipelineTests.test_invalid_json_fails_without_retry) ... ok
+test_invalid_options_fail_before_s3 (test_mapreduce.PipelineTests.test_invalid_options_fail_before_s3) ... ok
+test_process_pool_combiner_and_recovery (test_mapreduce.PipelineTests.test_process_pool_combiner_and_recovery) ... WARNING:root:Mapper chunk 1 bytes=40-79 attempt=1 failed: Injected mapper failure for retry verification
+WARNING:root:Mapper chunk 1 bytes=40-79 attempt=1 failed: Injected mapper failure for retry verification
+ok
+test_bucket_permission_error_is_not_treated_as_missing (test_pipeline_helpers.HelperTests.test_bucket_permission_error_is_not_treated_as_missing) ... ok
+test_even_number_of_measurements_uses_mean_of_middle_values (test_pipeline_helpers.HelperTests.test_even_number_of_measurements_uses_mean_of_middle_values) ... ok
+test_prepare_normalizes_and_handles_invalid_salary (test_pipeline_helpers.HelperTests.test_prepare_normalizes_and_handles_invalid_salary) ... ok
+test_profiler_drains_large_output (test_pipeline_helpers.HelperTests.test_profiler_drains_large_output) ... ok
+test_downloaded_bytes_are_checked_and_missing_input_prevents_upload (test_submission_checks.PublicationTests.test_downloaded_bytes_are_checked_and_missing_input_prevents_upload) ... ok
+test_frequencies_denominators_ties_and_empty_region (test_submission_checks.RegionalTests.test_frequencies_denominators_ties_and_empty_region) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 5.217s
+
+OK

@@ -1,0 +1,31 @@
+{
+  "method": "duckdb-sql",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "direct_s3_read": true,
+  "object_bytes": 1880228,
+  "object_sha256_metadata": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7",
+  "s3_object_unchanged_during_query": true,
+  "threads": 4,
+  "vacancies": 6215,
+  "elapsed_seconds": 12.6995,
+  "outputs": {
+    "skills": {
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "unique": 195366,
+      "total": 687102
+    }
+  },
+  "salary_rows": 1364,
+  "regions": [
+    "Москва",
+    "Санкт-Петербург",
+    "Екатеринбург"
+  ]
+}

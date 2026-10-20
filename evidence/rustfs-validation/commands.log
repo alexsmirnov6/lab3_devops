@@ -1,0 +1,645 @@
+RustFS validation: 2026-10-18T11:54:15.0038222+03:00
+docker compose --env-file .env up -d
+ Container rustfs-hw3  Running
+docker ps --filter name=rustfs-hw3 --format {{.Names}} {{.Image}} {{.Status}}
+rustfs-hw3 rustfs/rustfs:1.0.0 Up 2 minutes
+docker inspect --format {{.Config.Image}} {{.Image}} rustfs-hw3
+rustfs/rustfs:1.0.0 sha256:8cc9801755448b71a786705ce76692c77e14936cccd87cf2fc31842e58f4d1ff
+python -X utf8 -c import duckdb; duckdb.connect().execute('INSTALL httpfs')
+python -X utf8 src/s3_io.py upload ..\it_vacancies_2024.csv raw/it_vacancies_2024.csv
+{
+  "key": "raw/it_vacancies_2024.csv",
+  "bytes": 847619384,
+  "etag": "be9c1b4b3f57ff0e9771004c2a5fe78b-51",
+  "sha256_metadata": "303db922b541e4440906f5a7e8be32fb55e8808f950ffddb8c272f1548212a65"
+}
+python -X utf8 src/s3_io.py upload data/prepared/devops_vacancies.ndjson variants/devops/vacancies.ndjson
+{
+  "key": "variants/devops/vacancies.ndjson",
+  "bytes": 1880228,
+  "etag": "a92c544124a1697ca150a05a02c5d18e",
+  "sha256_metadata": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7"
+}
+python -X utf8 src/mapreduce_s3.py --out-dir results/rustfs/mapreduce --workers 4 --chunk-bytes 524288 --summary-out evidence/rustfs-validation/mapreduce_run.json
+{
+  "method": "mapreduce-optimized",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "object_bytes": 1880228,
+  "chunk_bytes": 524288,
+  "chunks": 4,
+  "workers": 4,
+  "worker_pids": [
+    17144,
+    36844,
+    37548,
+    39032
+  ],
+  "vacancies": 6215,
+  "retries": 0,
+  "intermediate_items": 342787,
+  "intermediate_pickle_bytes": 6316587,
+  "elapsed_seconds": 1.332646,
+  "outputs": {
+    "skills": {
+      "path": "results\\rustfs\\mapreduce\\skills.json",
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "path": "results\\rustfs\\mapreduce\\pairs.json",
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "path": "results\\rustfs\\mapreduce\\triples.json",
+      "unique": 195366,
+      "total": 687102
+    }
+  }
+}
+python -X utf8 src/duckdb_counts_s3.py --out-dir results/rustfs/duckdb_counts --threads 4
+{
+  "method": "duckdb-sql-counts-only",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "direct_s3_read": true,
+  "threads": 4,
+  "vacancies": 6215,
+  "elapsed_seconds": 0.951147,
+  "outputs": {
+    "skills": {
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "unique": 195366,
+      "total": 687102
+    }
+  }
+}
+python -X utf8 src/duckdb_analysis.py --out-dir results/rustfs/duckdb --threads 4 --summary-out evidence/rustfs-validation/duckdb_run.json
+{
+  "method": "duckdb-sql",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "direct_s3_read": true,
+  "object_bytes": 1880228,
+  "object_sha256_metadata": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7",
+  "s3_object_unchanged_during_query": true,
+  "threads": 4,
+  "vacancies": 6215,
+  "elapsed_seconds": 12.6995,
+  "outputs": {
+    "skills": {
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "unique": 195366,
+      "total": 687102
+    }
+  },
+  "salary_rows": 1364,
+  "regions": [
+    "Москва",
+    "Санкт-Петербург",
+    "Екатеринбург"
+  ]
+}
+python -X utf8 src/duckdb_variant_check.py --out evidence/rustfs-validation/variant_check.json
+{
+  "raw_s3_object": "s3://hh-lake/raw/it_vacancies_2024.csv",
+  "variant_s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "sql_condition": "dev[[:space:]-]*(sec[[:space:]-]*)?ops|девопс|site reliability|(^|[^a-z])sre([^a-z]|$)|platform engineer",
+  "duckdb_selected": 6215,
+  "prepared_selected": 6215,
+  "sql_only": 0,
+  "prepared_only": 0,
+  "exact_id_set_match": true,
+  "sql_ids_sha256": "054c2ede9b76850e3b995d2df9fdbbf2353baa9bd5ba60b08bd6268a0dae768e",
+  "prepared_ids_sha256": "054c2ede9b76850e3b995d2df9fdbbf2353baa9bd5ba60b08bd6268a0dae768e"
+}
+python -X utf8 src/verify_results.py results/rustfs/mapreduce results/rustfs/duckdb_counts --out evidence/rustfs-validation/verification.json
+{
+  "all_equal": true,
+  "checks": [
+    {
+      "stack": "skills",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "unique_combinations": 1541,
+      "total_emissions": 35158
+    },
+    {
+      "stack": "pairs",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "unique_combinations": 25462,
+      "total_emissions": 173204
+    },
+    {
+      "stack": "triples",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "unique_combinations": 195366,
+      "total_emissions": 687102
+    }
+  ]
+}
+python -X utf8 src/s3_io.py publish-results results/rustfs/mapreduce --out evidence/rustfs-validation/published_results.json
+{
+  "bucket": "hh-lake",
+  "prefix": "results/mapreduce",
+  "all_verified": true,
+  "objects": [
+    {
+      "key": "results/mapreduce/skills.json",
+      "bytes": 141664,
+      "etag": "445bdcda8bfbe166ebd3b0dd43bed964",
+      "sha256_metadata": "c18b9a9352795ce42d3aa7d5ef845af43083daa0f020e51e43e4ccda6730e7d0",
+      "sha256_downloaded": "c18b9a9352795ce42d3aa7d5ef845af43083daa0f020e51e43e4ccda6730e7d0",
+      "verified": true
+    },
+    {
+      "key": "results/mapreduce/pairs.json",
+      "bytes": 2881790,
+      "etag": "07cb116443e0423cc9374481475503cb",
+      "sha256_metadata": "ba6dcc751253937d2322bfc7d2985c387f113149c7bed7e73b7030fea69e512e",
+      "sha256_downloaded": "ba6dcc751253937d2322bfc7d2985c387f113149c7bed7e73b7030fea69e512e",
+      "verified": true
+    },
+    {
+      "key": "results/mapreduce/triples.json",
+      "bytes": 26156464,
+      "etag": "45545adc2414ae7b42c5d40728208953-2",
+      "sha256_metadata": "0fb6cddf70e5c20ecc0f6ea8220de0cd31867dfb9a0eea1873f41afc173b0edb",
+      "sha256_downloaded": "0fb6cddf70e5c20ecc0f6ea8220de0cd31867dfb9a0eea1873f41afc173b0edb",
+      "verified": true
+    }
+  ],
+  "list_objects_v2": [
+    {
+      "key": "results/mapreduce/pairs.json",
+      "bytes": 2881790,
+      "etag": "07cb116443e0423cc9374481475503cb"
+    },
+    {
+      "key": "results/mapreduce/skills.json",
+      "bytes": 141664,
+      "etag": "445bdcda8bfbe166ebd3b0dd43bed964"
+    },
+    {
+      "key": "results/mapreduce/triples.json",
+      "bytes": 26156464,
+      "etag": "45545adc2414ae7b42c5d40728208953-2"
+    }
+  ]
+}
+python -X utf8 src/s3_io.py list --prefix results/mapreduce/ --out evidence/rustfs-validation/list_objects.json
+[
+  {
+    "key": "results/mapreduce/pairs.json",
+    "bytes": 2881790,
+    "etag": "07cb116443e0423cc9374481475503cb"
+  },
+  {
+    "key": "results/mapreduce/skills.json",
+    "bytes": 141664,
+    "etag": "445bdcda8bfbe166ebd3b0dd43bed964"
+  },
+  {
+    "key": "results/mapreduce/triples.json",
+    "bytes": 26156464,
+    "etag": "45545adc2414ae7b42c5d40728208953-2"
+  }
+]
+python -X utf8 src/mapreduce_s3.py --out-dir results/rustfs/recovery --workers 4 --chunk-bytes 524288 --inject-failure --summary-out evidence/rustfs-validation/mapper_failure.json
+WARNING:root:Mapper chunk 1 bytes=524288-1048575 attempt=1 failed: Injected mapper failure for retry verification
+{
+  "method": "mapreduce-optimized",
+  "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+  "object_bytes": 1880228,
+  "chunk_bytes": 524288,
+  "chunks": 4,
+  "workers": 4,
+  "worker_pids": [
+    13904,
+    27284,
+    38156,
+    38920
+  ],
+  "vacancies": 6215,
+  "retries": 1,
+  "intermediate_items": 342787,
+  "intermediate_pickle_bytes": 6316587,
+  "elapsed_seconds": 1.301148,
+  "outputs": {
+    "skills": {
+      "path": "results\\rustfs\\recovery\\skills.json",
+      "unique": 1541,
+      "total": 35158
+    },
+    "pairs": {
+      "path": "results\\rustfs\\recovery\\pairs.json",
+      "unique": 25462,
+      "total": 173204
+    },
+    "triples": {
+      "path": "results\\rustfs\\recovery\\triples.json",
+      "unique": 195366,
+      "total": 687102
+    }
+  }
+}
+python -X utf8 src/verify_results.py results/rustfs/recovery results/rustfs/mapreduce --out evidence/rustfs-validation/recovery_verification.json
+{
+  "all_equal": true,
+  "checks": [
+    {
+      "stack": "skills",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "sha256_duckdb": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+      "unique_combinations": 1541,
+      "total_emissions": 35158
+    },
+    {
+      "stack": "pairs",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "sha256_duckdb": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+      "unique_combinations": 25462,
+      "total_emissions": 173204
+    },
+    {
+      "stack": "triples",
+      "equal": true,
+      "different_fields": [],
+      "sha256_mapreduce": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "sha256_duckdb": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2",
+      "unique_combinations": 195366,
+      "total_emissions": 687102
+    }
+  ]
+}
+python -X utf8 src/profile_pipeline.py --attempts 3 --workers 4 --chunk-bytes 524288 --out evidence/rustfs-validation/profiling.json
+{
+  "recorded_at_utc": "2026-10-18T08:55:19.723258+00:00",
+  "input": {
+    "endpoint": "http://127.0.0.1:9000",
+    "s3_object": "s3://hh-lake/variants/devops/vacancies.ndjson",
+    "bytes": 1880228,
+    "etag": "\"a92c544124a1697ca150a05a02c5d18e\"",
+    "sha256_metadata": "5c9daf1ac2c16c3aad36d97e6e23c7cffc6d92f0cf4ca215d73f8140e721b0c7"
+  },
+  "source_sha256": {
+    "common.py": "55aa7452c4784daa7ca461e17a0ea0e55fc8e38e42b92d99d2978acc1e52f054",
+    "duckdb_analysis.py": "c2119dac6f9bfeb848de3817d28c1b63cc974f2efb470664512a4a14c5a10bd5",
+    "duckdb_counts_s3.py": "713eca2217c96ca8be618fa60f1599120e6cc3ed5ea51ffd4e3426839ad142b2",
+    "duckdb_support.py": "b88162ff80be00f74a14d277aa3d4461b58114c3b159f095f881b423b05b6613",
+    "duckdb_variant_check.py": "c3c2410e72331233a47348a716e534ae9202a1b847138928221a6880a0a88245",
+    "inspect_json_archive.py": "60450566af9cfa171e1748963f949abf975753880f141d77bf18bb9ad987fe5d",
+    "inspect_source.py": "3a1ede16aa86998ff63699d2fba91e6cacca1298e898ad6cd2f07656e8e9c3de",
+    "mapreduce_s3.py": "8709b37ad805e8a28e075560bff578f67c35d8eb07161a6228ecd4f920e91ed6",
+    "prepare_dataset.py": "c9dd2153293d0cc09a5b471c0ab947f0f7942757f345ca905c9f8551f7d21a95",
+    "profile_pipeline.py": "92a7afe65b61c4d416a69ca0c50b32359b5afd851730df120fe564694d584fcb",
+    "s3_io.py": "4c5f596f770c76422d38e8f334fc396cab20c740bf4e8f118d12542cfbbee5ae",
+    "sample_json_archive.py": "a1cd9983d590d293d0b9d35dc9d11dce7859cf8b7efdb748683160a8efb0c9ba",
+    "verify_results.py": "abebc03bb4c3b323bae2c3a7be74331d33679c42c10929afdaac83e643aa1c8f"
+  },
+  "verification": {
+    "all_equal": true,
+    "runs": [
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_baseline",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "mapreduce_optimized",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 1,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 2,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      },
+      {
+        "method": "duckdb_sql",
+        "attempt": 3,
+        "sha256": {
+          "skills": "2ad809f9e9da9c73c8d311ace571b27b367b28cdf96b56d7e892e19615957e58",
+          "pairs": "cafaec2c23af084d67ce40c8cf4e7847ab46bf54766cb1663d1213d500877a12",
+          "triples": "4f194e88fc2c73d40541285a53d131d81b10b73f29fb257f9eaa01a9cd8bb4c2"
+        }
+      }
+    ]
+  },
+  "measurement": "wall clock plus maximum sum of RSS for the process tree, sampled every 10 ms",
+  "attempts_per_method": 3,
+  "workers_or_threads": 4,
+  "chunk_bytes": 524288,
+  "methods": {
+    "mapreduce_baseline": {
+      "attempts": 3,
+      "wall_seconds_median": 2.097697,
+      "peak_rss_mib_median": 411.242,
+      "runs": [
+        {
+          "wall_seconds": 2.221356,
+          "reported_compute_seconds": 1.498301,
+          "peak_rss_mib": 410.711,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        },
+        {
+          "wall_seconds": 2.030334,
+          "reported_compute_seconds": 1.428148,
+          "peak_rss_mib": 411.242,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        },
+        {
+          "wall_seconds": 2.097697,
+          "reported_compute_seconds": 1.45135,
+          "peak_rss_mib": 420.441,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 895464,
+          "intermediate_pickle_bytes": 14149696
+        }
+      ]
+    },
+    "mapreduce_optimized": {
+      "attempts": 3,
+      "wall_seconds_median": 2.046541,
+      "peak_rss_mib_median": 366.305,
+      "runs": [
+        {
+          "wall_seconds": 2.046541,
+          "reported_compute_seconds": 1.413015,
+          "peak_rss_mib": 373.055,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        },
+        {
+          "wall_seconds": 2.074288,
+          "reported_compute_seconds": 1.43847,
+          "peak_rss_mib": 363.703,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        },
+        {
+          "wall_seconds": 1.988437,
+          "reported_compute_seconds": 1.335372,
+          "peak_rss_mib": 366.305,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          },
+          "chunks": 4,
+          "retries": 0,
+          "intermediate_items": 342787,
+          "intermediate_pickle_bytes": 6316587
+        }
+      ]
+    },
+    "duckdb_sql": {
+      "attempts": 3,
+      "wall_seconds_median": 1.046671,
+      "peak_rss_mib_median": 323.949,
+      "runs": [
+        {
+          "wall_seconds": 1.046671,
+          "reported_compute_seconds": 0.637481,
+          "peak_rss_mib": 331.039,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.046413,
+          "reported_compute_seconds": 0.639891,
+          "peak_rss_mib": 323.949,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        },
+        {
+          "wall_seconds": 1.060754,
+          "reported_compute_seconds": 0.650299,
+          "peak_rss_mib": 322.77,
+          "vacancies": 6215,
+          "outputs": {
+            "skills": {
+              "unique": 1541,
+              "total": 35158
+            },
+            "pairs": {
+              "unique": 25462,
+              "total": 173204
+            },
+            "triples": {
+              "unique": 195366,
+              "total": 687102
+            }
+          }
+        }
+      ]
+    }
+  },
+  "optimization_effect": {
+    "wall_speedup": 1.025,
+    "peak_memory_reduction_pct": 10.93
+  }
+}

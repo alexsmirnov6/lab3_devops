@@ -86,6 +86,47 @@ def upload_tree(s3, bucket: str, root: Path, prefix: str, workers: int) -> list[
     return sorted(results, key=lambda item: item["key"])
 
 
+def list_objects(s3, bucket: str, prefix: str = "") -> list[dict]:
+    items = []
+    for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=prefix):
+        items.extend({"key": item["Key"], "bytes": item["Size"], "etag": item["ETag"].strip('"')}
+                     for item in page.get("Contents", []))
+    return sorted(items, key=lambda item: item["key"])
+
+
+def publish_results(s3, bucket: str, root: Path, prefix: str) -> dict:
+    """Upload precisely three results, then verify actual downloaded bytes."""
+    inputs = []
+    rows = set()
+    for width, name in enumerate(("skills", "pairs", "triples"), 1):
+        path = root / f"{name}.json"
+        document = json.loads(path.read_text(encoding="utf-8"))
+        if document["stack_size"] != width or len(document["counts"]) != document["unique_combinations"]:
+            raise ValueError(f"Invalid result document: {path}")
+        rows.add(document["vacancies"])
+        inputs.append((path, prefix.strip("/") + "/" + path.name))
+    if len(rows) != 1:
+        raise ValueError("Result documents disagree on vacancy count")
+    verified = []
+    for path, key in inputs:
+        uploaded = upload(s3, bucket, path, key)
+        digest = hashlib.sha256()
+        downloaded_bytes = 0
+        response = s3.get_object(Bucket=bucket, Key=key)
+        with response["Body"] as stream:
+            for block in iter(lambda: stream.read(8 * 1024 * 1024), b""):
+                digest.update(block)
+                downloaded_bytes += len(block)
+        expected = checksum(path)
+        if digest.hexdigest() != expected or uploaded["sha256_metadata"] != expected:
+            raise RuntimeError(f"S3 checksum mismatch: s3://{bucket}/{key}")
+        if downloaded_bytes != path.stat().st_size or uploaded["bytes"] != downloaded_bytes:
+            raise RuntimeError(f"S3 size mismatch: s3://{bucket}/{key}")
+        verified.append({**uploaded, "sha256_downloaded": digest.hexdigest(), "verified": True})
+    return {"bucket": bucket, "prefix": prefix, "all_verified": True, "objects": verified,
+            "list_objects_v2": list_objects(s3, bucket, prefix.rstrip("/") + "/")}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="command", required=True)
@@ -96,13 +137,19 @@ def main() -> None:
     tree.add_argument("root", type=Path)
     tree.add_argument("prefix")
     tree.add_argument("--workers", type=int, default=8)
+    publish = sub.add_parser("publish-results")
+    publish.add_argument("root", type=Path)
+    publish.add_argument("--prefix", default="results/mapreduce")
+    publish.add_argument("--out", type=Path, required=True)
     listing = sub.add_parser("list")
+    listing.add_argument("--prefix", default="")
     listing.add_argument("--out", type=Path)
     args = parser.parse_args()
 
     config = S3Config.from_env()
     s3 = client(config)
-    ensure_bucket(s3, config.bucket)
+    if args.command != "list":
+        ensure_bucket(s3, config.bucket)
     if args.command == "upload":
         print(json.dumps(upload(s3, config.bucket, args.path, args.key), ensure_ascii=False, indent=2))
     elif args.command == "upload-tree":
@@ -120,21 +167,14 @@ def main() -> None:
                 indent=2,
             )
         )
+    elif args.command == "publish-results":
+        result = publish_results(s3, config.bucket, args.root, args.prefix)
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+        args.out.write_text(rendered, encoding="utf-8")
+        print(rendered, end="")
     else:
-        items = []
-        token = None
-        while True:
-            kwargs = {"Bucket": config.bucket}
-            if token:
-                kwargs["ContinuationToken"] = token
-            response = s3.list_objects_v2(**kwargs)
-            items.extend(
-                {"key": item["Key"], "bytes": item["Size"], "etag": item["ETag"].strip('"')}
-                for item in response.get("Contents", [])
-            )
-            if not response.get("IsTruncated"):
-                break
-            token = response["NextContinuationToken"]
+        items = list_objects(s3, config.bucket, args.prefix)
         text = json.dumps(items, ensure_ascii=False, indent=2) + "\n"
         if args.out:
             args.out.parent.mkdir(parents=True, exist_ok=True)
